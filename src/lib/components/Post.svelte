@@ -1,14 +1,15 @@
 <script lang="ts">
-	export let img: string;
-	export let img_alt: string;
-	export let title: string;
-	export let author: string;
-	export let updated_at: string;
-	export let text: string;
-	export let href: string;
+	export let title: string,
+		slug: string,
+		feature_image: string,
+		feature_image_alt: string,
+		updated_at: string,
+		tags: (string | undefined)[],
+		authors: string[],
+		excerpt: string;
 
 	const date = new Date(updated_at);
-	const time = date.toLocaleTimeString('cs-CZ', {
+	const time = date.toLocaleTimeString('pl-PL', {
 		day: 'numeric',
 		month: 'numeric',
 		year: 'numeric',
@@ -17,13 +18,15 @@
 	});
 </script>
 
-<a id="post" data-sveltekit-preload-data="hover" {href}>
-	<img loading="lazy" src={img} alt={img_alt} />
+<a id="post" data-sveltekit-preload-data="hover" href={`/blog/${slug}`}>
+	<img loading="lazy" src={feature_image} alt={feature_image_alt} />
 	<div id="post-text">
 		<h1>{title}</h1>
-		<p id="post-text-p">{text}</p>
+		<p id="post-text-p">{@html excerpt}</p>
 		<div id="info">
+		{#each authors as author}
 			<p>{author}</p>
+		{/each}
 			<p>{time}</p>
 		</div>
 	</div>
