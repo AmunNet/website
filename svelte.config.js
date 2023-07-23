@@ -1,21 +1,21 @@
 import adapter from '@sveltejs/adapter-node';
-import preprocess from 'svelte-preprocess';
+import { vitePreprocess } from '@sveltejs/kit/vite';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: preprocess(),
+	preprocess: vitePreprocess(),
+	extensions: ['.svelte', '.md'],
+	/*compilerOptions: {
+        customElement: true
+        // other compiler options ...
+    },*/
 
 	kit: {
 		adapter: adapter({
 			out: 'build'
 		}),
-
-		// Override http methods in the Todo forms
-		methodOverride: {
-			allowed: ['PATCH', 'DELETE']
-		}
 	}
 };
 
