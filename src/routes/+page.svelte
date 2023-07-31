@@ -1,6 +1,15 @@
 <script>
-	import Card from "./Card.svelte";
+	import { append } from "svelte/internal";
+import Card from "./Card.svelte";
+	import { onMount } from "svelte";
 
+	onMount(() => {
+		const app = document.getElementById("app");
+		const script = document.createElement("script");
+		script.type = "module";
+		script.src = "/livematrix/livematrix.js";
+		document.head.appendChild(script);
+	});
 </script>
 <!--<script lang="ts">
 	import Counter from '$lib/Counter.svelte';
@@ -12,6 +21,7 @@
 	<title>Amun IT Software</title>
 	<meta name="description" content="In control of your information" />
 	<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="/livematrix/livematrix.css">
 </svelte:head>
 
 <section>
@@ -20,6 +30,7 @@
 	</video>
     <Card />
 </section>
+<div id="app" class="tw-fixed"></div>
 
 <style>
 section {
@@ -28,6 +39,10 @@ section {
 	justify-content: center;
 	align-items: center;
 	flex: 1;
+}
+
+#app *{
+	font-family:"Roboto",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
 }
 
 #background {

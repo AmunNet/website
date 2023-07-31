@@ -1,0 +1,16 @@
+{ 
+    "config" : {
+        "server" : {
+            "proto": "https", 
+            "host": "lm.amun.pl", 
+            "port": ""
+        }, 
+        "websocket": {
+            "proto": "wss",
+            "host": "lm.amun.pl", 
+            "port": ""
+        }
+    }, 
+    "greetings": "Amun welcomes you. Leave your message below."
+}
+

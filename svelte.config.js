@@ -13,6 +13,9 @@ const config = {
     },*/
 
 	kit: {
+		files: {
+			assets: 'static'
+		},
 		adapter: adapter({
 			out: 'build'
 		}),
