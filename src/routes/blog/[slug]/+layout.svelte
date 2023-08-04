@@ -2,29 +2,33 @@
 	export let data;
 </script>
 
-<div class="layout">
-	<main>
-		<slot />
-	</main>
+<article>
+	<slot />
+</article>
 
-	<aside>
-		<h2>More posts</h2>
-		<ul>
-			{#each data.posts ?? [] as post}
-				<li>
-					<a href="/blog/{post.slug}">{post.title}</a>
-				</li>
-			{/each}
-		</ul>
-	</aside>
-</div>
+<aside>
+	<h2>Latest posts</h2>
+	<ul>
+		{#await data.posts}
+			<p>...loading</p>
+		{:then posts} 
+		{#each posts ?? [] as post}
+			<li>
+				<a href="/blog/{post.slug}">{post.title}</a>
+			</li>
+		{/each}
+		{/await}
+	</ul>
+</aside>
 
 <style>
-	@media (min-width: 640px) {
-		.layout {
-			display: grid;
-			gap: 2em;
-			grid-template-columns: 1fr 16em;
-		}
-	}
+
+article {
+	min-width: 20ch;
+}
+
+aside {
+	grid-column: 2;
+	width: 20ch;
+}
 </style>

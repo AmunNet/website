@@ -2,8 +2,8 @@ import GhostContentAPI from '@tryghost/content-api';
 
 /** @type {import('./$types').PageServerLoad} */
 export async function load({params}) {
-    const GHOST_URL = 'https://amun.pl';
-    const GHOST_KEY = '0fddb40f075ef7d86414cbc78e';
+    const GHOST_URL = 'https://ghost.amun.pl';
+    const GHOST_KEY = 'e701b4bd9cb5352d3dc49c381b';
     const GHOST_VERSION = 'v5.0';
 
     const api = GhostContentAPI({

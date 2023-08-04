@@ -5,7 +5,7 @@
 		feature_image_alt: string,
 		updated_at: string,
 		tags: (string | undefined)[],
-		authors: string[],
+		authors: (string | undefined)[],
 		excerpt: string;
 
 	const date = new Date(updated_at);
@@ -17,113 +17,67 @@
 		minute: '2-digit'
 	});
 </script>
-
-<a id="post" data-sveltekit-preload-data="hover" href={`/blog/${slug}`}>
+<!-- TODO: Don't make it whole a link... It looks bad, has bad UX, and breaks UX on mobile.-->
+<a class="post" data-sveltekit-preload-data="hover" href={`/blog/${slug}`}>
 	<img loading="lazy" src={feature_image} alt={feature_image_alt} />
-	<div id="post-text">
+	<div class="post-text">
 		<h1>{title}</h1>
-		<p id="post-text-p">{@html excerpt}</p>
-		<div id="info">
+		<p class="post-text-p">{@html excerpt}</p>
+		<div class="info">
 		{#each authors as author}
-			<p>{author}</p>
+			<p style="font-size: 1rem;">{author}</p>
 		{/each}
-			<p>{time}</p>
+			<p style="font-size: 1rem;">{time}</p>
 		</div>
 	</div>
 </a>
 
 <style>
-	#post {
+	.post {
 		position: relative;
-		z-index: 10;
+		flex: 1 1 20rem;
+		z-index: 0;
 		display: grid;
-		grid-template-columns: auto auto;
-		grid-gap: 3vw;
-		width: 80%;
-		height: 20vh;
-		margin-left: 10%;
-		margin-bottom: 2%;
-		padding: 16px;
-		border-radius: 12px;
-		background-color: #202327;
+		min-width: 18rem; /* TODO: Give it rem units */
+		max-width: 40rem;
+		padding: 2rem;
+		margin: 2rem;
+		background-color: var(--tertiary-color);
+		-webkit-transition: .4s ease-in-out;
+		transition: .4s ease-in-out;
 	}
 
-	#post-text {
-		width: 52vw;
-		margin-right: 3vw;
-		display: grid;
-	}
-
-	#post-text-p {
-		margin-left: 3%;
-		height: 8vh;
-	}
-
-	#info {
-		display: flex;
-		justify-content: space-between;
-		border-top: 1px solid var(--on-tertiary);
-		margin-left: 3%;
-	}
-
-	h1 {
-		color: var(--secondary);
-		margin-top: 0%;
-		font-size: 48px;
-	}
-
-	p {
-		color: var(--on-tertiary);
-		width: fit-content;
+	.post::after {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: linear-gradient(159deg,var(--tertiary-color) 0%, var(--tertiary-color) 40%, rgba(var(--rgba-tertiary-color), 0.9) 80%, var(--fourth-color) 100%);
+		z-index: -1;
 	}
 
 	img {
-		justify-self: center;
-		width: 20vw;
-		max-height: 20vh;
-		border-radius: 10px;
+		position: absolute;
+		z-index: -2;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
-
-	a {
-		text-decoration: none;
+	
+	.info {
+		display: flex;
+		justify-content: space-between;
+		border-top: 1px solid var(--accent-color);
 	}
 
 	a:hover {
-		translate: 8px 0px;
-		text-decoration: none !important;
+		-webkit-transform: translate(5px, 1px);
+		transform: translate(5px, 1px);
 	}
 
-	@media (max-width: 800px) {
-		#post {
-			grid-template-columns: auto;
-			grid-template-rows: auto auto;
-			grid-gap: 1vh;
-			width: 85%;
-			height: 50vh;
-			margin-left: auto;
-			margin-right: auto;
-		}
-
-		#post-text {
-			width: 100%;
-			margin-right: 0;
-			display: grid;
-		}
-
-		#post-text-p {
-			margin-left: 0;
-			height: 20vh;
-		}
-
-		#info {
-			margin-left: 0;
-			margin-top: -10%;
-		}
-
-		img {
-			width: 100%;
-			max-height: 25vh;
-			border-radius: 10px;
-		}
+	a:hover .info {
+		color: var(--accent-color);
 	}
 </style>
