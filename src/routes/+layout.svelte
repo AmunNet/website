@@ -1,53 +1,130 @@
-<script lang="ts">
-	// import Header from '$lib/header/Header.svelte';
-	// import '../app.css';
-</script>
-
-<!-- <Header /> -->
-<!-- TODO: Improve and adapt the import header -->
-<svelte:head>
-	<title>Amun IT Software - Blog</title>
-	<meta name="description" content="In control of your information" />
-	<link href="https://fonts.googleapis.com/css?family=Oswald&display=swap" rel="stylesheet" />
-</svelte:head>
-
-<main>
-	<slot />
-</main>
-
-<!--
-<footer>
-	<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
-</footer>
--->
-
 <style>
-	main {
-		flex: 1;
-		display: flex;
-		flex-direction: column;
-		padding: 1rem;
-		width: 100%;
-		max-width: 1024px;
-		margin: 0 auto;
-		box-sizing: border-box;
-	}
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Poppins:wght@400;600;800&family=Roboto:ital,wght@0,300;1,300&display=swap');
+/* Oswald & Roboto with Italics & Poppins*/
 
-	footer {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		padding: 40px;
-	}
+/* Todo: Define color styles */
+:root {
+	--pure-white: #ffffff;
+	--primary-color: #191923;
+	--secondary-color: #20202a;
+	--tertiary-color: #2d2d3a;
+	--fourth-color: #2b2b35;
+	--accent-color: #ffc107;
+	--heading-color: #fafafc;
+	--text-color: #8a8a8a;
+	--rgba-primary-color: 25, 25, 35;
+	--rgba-secondary-color: 32, 32, 42;
+	--rgba-tertiary-color: 45, 45, 58;
+	--rgba-fourth-color: 43, 43, 53;
+	--rgba-accent-color: 255, 193, 7;
+	--rgba-heading-color: 250, 250, 252;
+	--rgba-text-color: 138, 138, 138;
+	--column-width: 42rem;
+	--column-margin-top: 4rem;
 
-	footer a {
-		font-weight: bold;
-	}
+	font-family: 'Poppins', sans-serif;
+	font-size: 62.5%;
+	margin: 0;
+}
 
-	@media (min-width: 480px) {
-		footer {
-			padding: 40px 0;
-		}
-	}
+/*:global(body) {
+    margin: 0;
+    
+    
+    line-height: 1.5;
+    color: #8c8c8e;
+}*/
+
+:global(body) {
+	min-height: 100vh;
+	max-width: 1440px;
+	margin: auto;
+	padding: 1rem;
+	color: var(--text-color);
+	background: var(--primary-color);
+	background: linear-gradient(
+		159deg,
+		var(--primary-color) 0%,
+		var(--secondary-color) 80%,
+		var(--tertiary-color) 99%
+	);
+	overflow-x: hidden;
+    display: flex;
+    flex-direction: row;
+	font-size: 1.6rem;
+}
+
+:global(body::before) {
+	content: '';
+	width: 80vw;
+	height: 100vh;
+	position: absolute;
+	top: 0;
+	left: 10vw;
+	z-index: -1;
+	background: radial-gradient(
+		50% 50% at 50% 50%,
+		var(--pure-white) 0%,
+		rgba(255, 255, 255, 0) 100%
+	);
+	opacity: 0.05;
+}
+
+:global(p) {
+	font-weight: 400;
+	line-height: 1.5;
+}
+
+:global(h1, h2, h3, h4, h5, h6, p > span) {
+	margin: 0;
+	font-weight: 400;
+	line-height: 1.5;
+	color: var(--heading-color);
+}
+
+:global(h1) {
+	font-size: 4rem;
+	text-align: center;
+	font-weight: 800;
+}
+
+:global(h2) {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+:global(h3) {
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+:global(a) {
+	color: var(--accent-color);
+	text-decoration: none;
+	-webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+}
+
+:global(a > *) {
+	color: var(--text-color);
+	text-decoration: none;
+}
+
+:global(a:hover) {
+	color: var(--heading-color);
+	-webkit-transition: .4s ease-in-out;
+	transition: .4s ease-in-out;
+}
+
+:global(pre) {
+	font-size: 16px;
+	font-family: var(--font-mono);
+	background-color: rgba(255, 255, 255, 0.45);
+	border-radius: 3px;
+	box-shadow: 2px 2px 6px rgb(255 255 255 / 25%);
+	padding: 0.5em;
+	overflow-x: auto;
+	color: var(--text-color);
+}
 </style>
+<slot/>

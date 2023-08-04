@@ -9,7 +9,8 @@
         </div>
         <div id="logo-flip-back">
             <div class="text">
-                <h3>contact@amun.pl</h3>
+                <h1>contact@amun.pl</h1>
+                <p>Or, even better,<br> use the chat box<br> bottom right</p>
                 <!--<p>AMUN Technologie
                 <br>895 224 10 28</p> -->
             </div>
@@ -21,7 +22,7 @@
 #logo {
     width: 436px;
     height: 550px;
-    margin: 50px auto 0px auto;
+    margin: auto;
     border: 10px black;
     perspective: 1000px;
 }
@@ -71,6 +72,6 @@ h2 {
     font-size: 5em;
     letter-spacing: 7px;
     margin: 0;
-    line-height: 80px;
+    line-height: 1em;
 }
 </style>
