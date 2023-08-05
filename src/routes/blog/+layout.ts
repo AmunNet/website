@@ -1,3 +1,4 @@
+export const prerender = true;
 import GhostContentAPI from '@tryghost/content-api';
 
 /** @type {import('./$types').PageServerLoad} */
