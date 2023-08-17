@@ -36,10 +36,11 @@
 }*/
 
 :global(body) {
-	min-height: 100vh;
+	height: calc(100vh - 2rem);
 	max-width: 1440px;
 	margin: auto;
 	padding: 1rem;
+	overflow: hidden;
 	color: var(--text-color);
 	background: var(--primary-color);
 	background: linear-gradient(
@@ -48,8 +49,8 @@
 		var(--secondary-color) 80%,
 		var(--tertiary-color) 99%
 	);
-	overflow-x: hidden;
     display: flex;
+	position: relative;
     flex-direction: row;
 	font-size: 1.6rem;
 }
@@ -60,7 +61,7 @@
 	height: 100vh;
 	position: absolute;
 	top: 0;
-	left: 10vw;
+	left: 0;
 	z-index: -1;
 	background: radial-gradient(
 		50% 50% at 50% 50%,
@@ -70,6 +71,10 @@
 	opacity: 0.05;
 }
 
+:global(*::-webkit-scrollbar) {
+	display: none;
+}
+
 :global(p) {
 	font-weight: 400;
 	line-height: 1.5;
@@ -77,24 +82,18 @@
 
 :global(h1, h2, h3, h4, h5, h6, p > span) {
 	margin: 0;
-	font-weight: 400;
 	line-height: 1.5;
 	color: var(--heading-color);
 }
 
 :global(h1) {
-	font-size: 4rem;
-	text-align: center;
-	font-weight: 800;
 }
 
 :global(h2) {
-	font-size: 1.2rem;
 	font-weight: 600;
 }
 
 :global(h3) {
-	font-size: 1rem;
 	font-weight: 600;
 }
 

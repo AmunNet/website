@@ -1,6 +1,8 @@
-<script>
-	import Tag from "$lib/components/Blog-Tag.svelte";
+<script lang="ts">
+	import { page } from "$app/stores";
+	import Post from "$lib/components/Blog-Post.svelte";
 	export let data;
+    const posts = data.posts?.filter(post => post.tags.some(tag => $page.params.slug === tag));
 </script>
 
 <header>
@@ -11,10 +13,10 @@
 	</div>
 	<div id="image-trim"><img src="/barbie_left.png" alt=""></div>
 </header>
-<h2>Topics</h2>
-<section id="tags">
-{#each data.tags ?? [] as tag}
-	<Tag {...tag} />
+<h2>Posts</h2>
+<section id="posts">
+{#each posts ?? [] as post}
+	<Post {...post} />
 {/each}
 </section>
 
@@ -63,7 +65,7 @@
 		overflow: hidden;
 	}
 
-	#tags {
+	#posts {
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;

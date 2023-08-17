@@ -14,7 +14,7 @@ export async function load() {
     });
 
     try {
-        const postsJson = await api.posts.browse({limit: 5, include: ['tags', 'authors']});
+        const postsJson = await api.posts.browse({limit: 20, include: ['tags', 'authors'], order: 'updated_at DESC'});
 
         return {
             posts: postsJson.map((post) => ({
@@ -24,7 +24,7 @@ export async function load() {
                 feature_image: post.feature_image? post.feature_image : 'https://amun.pl/eye-of-ra.png',
                 feature_image_alt: post.feature_image_alt? post.feature_image_alt : '',
                 excerpt: post.excerpt? post.excerpt : '',
-                tags: post.tags!.map(tag => tag.name),
+                tags: post.tags!.map(tag => tag.slug),
                 authors: post.authors?.map(author => author.name) || ['Unknown author'],
             })),
         };

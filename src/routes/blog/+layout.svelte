@@ -2,6 +2,7 @@
     import { MeterChart } from '@carbon/charts-svelte';
     import { Statuses, ChartTheme } from '@carbon/charts';
     import '@carbon/charts-svelte/styles.css';
+    export let data;
 </script>
 
 <aside>
@@ -163,8 +164,24 @@
 <main>
     <slot/>
 </main>
+<input type="checkbox" id="nav-menu-checkbox" style="display:none;"/>
+<label id='nav-button' for='nav-menu-checkbox'>
+    <div id='burger'></div>
+</label>
+<nav>
+    <!-- TODO: Make this content dynamic-->
+    <ul class="sidebarMenuInner">
+      <li>Kamil Śmigielski <br><span>IT Engineer</span></li>
+      <li><a href="https://amun.pl">Company Home</a></li>
+      <li><a href="https://amun.pl/blog">Blog Home</a></li>
+      <li><a href="https://instagram.com/" target="_blank"><s>Instagram</s></a></li>
+      <li><a href="https://twitter.com/" target="_blank"><s>Twitter</s></a></li>
+      <li><a href="https://www.youtube.com/@DriftJunkie" target="_blank">YouTube</a></li>
+      <li><a href="https://www.linkedin.com/in/kamil-smigielski" target="_blank">Linkedin</a></li>
+    </ul>
+</nav>
 
-<style>
+<style lang="less">
 h1, h2, h3, h4, h5, h6, p {
     width: 100%;
     display: flex;
@@ -181,59 +198,61 @@ aside {
     display: flex;
     flex-direction: column;
     text-align: center;
-
     min-width: 20ch;
     width: 30ch;
-    height: 100%;
+    height: -webkit-fill-available;
     background: var(--secondary-color);
     padding: 3.2rem 2rem;
-}
 
-aside > section {
-    width: 100%;
-    justify-content: center;
-}
+    > section {
+        width: 100%;
+        justify-content: center;
+    }
 
-aside section::after {
-    display: block;
-    content:"";
-    background: #8c8c8e;
-    width: 100%;
-    height: 1px;
-    opacity: .3;
-    margin: 10px 0;
-}
+    section::after {
+        display: block;
+        content:"";
+        background: #8c8c8e;
+        width: 100%;
+        height: 1px;
+        opacity: .3;
+        margin: 10px 0;
+    }
 
-aside #header img {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-}
+    #header img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+    }
 
-aside h3 {
-    font-size: 18px;
-    margin-top: 0;
-}
+    p {
+        font-size: 14px;
+    }
 
-aside p {
-    font-size: 14px;
-}
+    h3 {
+        font-size: 18px;
+        margin-top: 0;
+    }
 
-aside a {
-    display: inline-block;
-    background-color: #333;
-    color: #fff;
-    text-decoration: none;
-    padding: 1rem 2rem;
-    border-radius: 4px;
+    a {
+        display: inline-block;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        padding: 1rem 2rem;
+        border-radius: 4px;
+    }
 }
 
 main {
     display: grid;
-    height: 100%;
+    grid-auto-rows: max-content;
+    overflow: auto;
     width: 100%;
     min-width: 20rem;
-    padding: 8rem 5rem;
+    padding: 6rem 5rem;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
 }
 
 #goals div {
@@ -241,9 +260,106 @@ main {
     margin: auto;
 }
 
-@media (max-width: 40rem) {
+#nav-button {
+    transition: all 0.3s;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: absolute;
+    z-index: 99;
+    top: 2rem;
+    right: 2rem;
+    height: 3rem;
+    width: 3rem;
+    #burger, #burger::after, #burger::before {
+            transition: all .25s;
+            content: "";
+            position: absolute;
+            left: 0;
+            height: 6px;
+            width: 30px;
+            border-radius: 15px;
+            background-color: rgba(255, 255, 255, 0.95);
+    }
+    #burger {
+        top: 1rem;
+        right: 0;
+        &::before {
+            top: -8px;
+        }
+        &::after {
+            top: 8px;
+        }
+    }
+}
+#nav-menu-checkbox:checked {
+    & ~ nav {
+        width: 250px;
+        transition: 250ms ease-in-out;
+        ul {
+            opacity: 1;
+            transform: translateX(0) translateY(-50%);
+            transition: 450ms ease-in-out;
+        }
+    }
+    & ~ #nav-button > #burger {
+        &::before {
+            top: 0;
+            transform: rotate(45deg);
+        }
+        &::after {
+            top: 0;
+            transform: rotate(-45deg);
+        }
+        & {
+            background-color: transparent;
+        }
+    }
+}
+
+nav {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 0;
+    width: 5rem;
+    height: -webkit-fill-available;
+    overflow: hidden;
+    margin: 1rem;
+    transition: 250ms ease-in-out;
+    background: linear-gradient(180deg, var(--tertiary-color) 0%, var(--fourth-color) 100%);
+    border-radius: 0 0 0 1rem;
+    ul {
+        margin: 0;
+        padding: 0;
+        position: relative;
+        top: 50%;
+        width: 250px;
+        opacity: 0;
+        transform: translateX(50px) translateY(-50%);
+        transition: 450ms ease-out;
+        li {
+            list-style: none;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: bold;
+            padding: 1em;
+            max-height: 3em;
+            cursor: pointer;
+            a {
+                color: #fff;
+                text-transform: uppercase;
+                font-weight: bold;
+                cursor: pointer;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@media (max-aspect-ratio: 4/3) {
     aside {
         position:absolute;
+        visibility: hidden;
     }
 }
 

@@ -17,7 +17,6 @@
 		minute: '2-digit'
 	});
 </script>
-<!-- TODO: Don't make it whole a link... It looks bad, has bad UX, and breaks UX on mobile.-->
 <a class="post" data-sveltekit-preload-data="hover" href={`/blog/${slug}`}>
 	<img loading="lazy" src={feature_image} alt={feature_image_alt} />
 	<div class="post-text">
@@ -37,12 +36,13 @@
 		position: relative;
 		flex: 1 1 20rem;
 		z-index: 0;
-		display: grid;
 		min-width: 18rem; /* TODO: Give it rem units */
 		max-width: 40rem;
 		padding: 2rem;
 		margin: 2rem;
 		background-color: var(--tertiary-color);
+		-webkit-box-shadow: 0 1em 1em 0 rgba(15,15,20,.2);
+    	box-shadow: 0 1em 1em 0 rgba(15,15,20,.2);
 		-webkit-transition: .4s ease-in-out;
 		transition: .4s ease-in-out;
 	}
@@ -54,7 +54,7 @@
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background: linear-gradient(159deg,var(--tertiary-color) 0%, var(--tertiary-color) 40%, rgba(var(--rgba-tertiary-color), 0.9) 80%, var(--fourth-color) 100%);
+    	background-image: linear-gradient(159deg,var(--tertiary-color) 0%,var(--tertiary-color) 30%,rgba(var(--rgba-tertiary-color),.6) 50%,var(--fourth-color) 80%);
 		z-index: -1;
 	}
 
@@ -63,6 +63,8 @@
 		z-index: -2;
 		width: 100%;
 		height: 100%;
+		top: 0;
+		left: 0;
 		object-fit: cover;
 	}
 	
