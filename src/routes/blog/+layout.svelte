@@ -5,6 +5,17 @@
     export let data;
 </script>
 
+<!-- START: Controls for slideouts -->
+<input type="checkbox" id="aside-menu-checkbox" style="display:none;"/>
+<label id='aside-button' for='aside-menu-checkbox'>
+    <div id='arrow'></div>
+</label>
+<input type="checkbox" id="nav-menu-checkbox" style="display:none;"/>
+<label id='nav-button' for='nav-menu-checkbox'>
+    <div id='burger'></div>
+</label>
+<!-- END: Controls for slideouts -->
+
 <aside>
     <section id="header">
         <img src="/eye-of-ra.png" alt="">
@@ -164,13 +175,9 @@
 <main>
     <slot/>
 </main>
-<input type="checkbox" id="nav-menu-checkbox" style="display:none;"/>
-<label id='nav-button' for='nav-menu-checkbox'>
-    <div id='burger'></div>
-</label>
 <nav>
     <!-- TODO: Make this content dynamic-->
-    <ul class="sidebarMenuInner">
+    <ul>
       <li>Kamil Śmigielski <br><span>IT Engineer</span></li>
       <li><a href="https://amun.pl">Company Home</a></li>
       <li><a href="https://amun.pl/blog">Blog Home</a></li>
@@ -198,11 +205,15 @@ aside {
     display: flex;
     flex-direction: column;
     text-align: center;
-    min-width: 20ch;
-    width: 30ch;
+    position: absolute;
+    left: 0px;
+    top: 0;
+    z-index: 1;
+    padding: 3.2rem 2rem;
+    margin: 1rem;
+    width: 20rem;
     height: -webkit-fill-available;
     background: var(--secondary-color);
-    padding: 3.2rem 2rem;
 
     > section {
         width: 100%;
@@ -248,9 +259,8 @@ main {
     display: grid;
     grid-auto-rows: max-content;
     overflow: auto;
-    width: 100%;
-    min-width: 20rem;
-    padding: 6rem 5rem;
+    padding: 6rem 2rem;
+    margin: 0 5rem 0 24rem;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -315,7 +325,6 @@ main {
         }
     }
 }
-
 nav {
     display: block;
     position: absolute;
@@ -356,10 +365,30 @@ nav {
     }
 }
 
-@media (max-aspect-ratio: 4/3) {
+@media (pointer: coarse) {
     aside {
         position:absolute;
         visibility: hidden;
+    }
+    main {
+        padding: 6rem 1rem;
+        margin: unset;
+    }
+}
+
+@media (orientation: portrait) {
+    :global(#image-trim) {
+        display: none;
+    }
+    main {
+        padding: unset;
+        margin: unset;
+    }
+    :global(.tag, .post) {
+        padding: 1rem !important;
+        margin: 1rem !important;
+        min-width: 15rem !important; /* TODO: Give it rem units */
+        flex: 1 1 15rem !important;
     }
 }
 

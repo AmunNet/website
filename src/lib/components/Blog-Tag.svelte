@@ -20,9 +20,9 @@
 <style>
 	.tag {
 		position: relative;
-		flex: 1 1 20rem;
+		flex: 1 1 15rem;
 		z-index: 0;
-		min-width: 18rem; /* TODO: Give it rem units */
+		min-width: 15rem; /* TODO: Give it rem units */
 		max-width: 40rem;
 		padding: 2rem;
 		margin: 2rem;

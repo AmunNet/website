@@ -6,9 +6,8 @@ const config = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: vitePreprocess({
-			less: true,
-		}
-	),
+		less: true
+	}),
 	extensions: ['.svelte', '.md'],
 	/*compilerOptions: {
         customElement: true
@@ -21,7 +20,7 @@ const config = {
 		},
 		adapter: adapter({
 			out: 'build'
-		}),
+		})
 	}
 };
 

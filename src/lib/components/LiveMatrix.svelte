@@ -2,7 +2,7 @@
 import { onMount } from "svelte";
 
 onMount(() => {
-	const app = document.getElementById("app");
+	// const app = document.getElementById("app");
 	const script = document.createElement("script");
 	script.type = "module";
 	script.src = "/livematrix/livematrix.js";
