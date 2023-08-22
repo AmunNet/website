@@ -15,3 +15,14 @@ onMount(() => {
 </svelte:head>
 
 <aside id="app" class="tw-fixed"></aside>
+
+<style>
+#app *{
+	font-family:"Roboto",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+}
+#app {
+	right: 0;
+	bottom: 0;
+	width: 24rem;
+}
+</style>

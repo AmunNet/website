@@ -377,7 +377,7 @@ function Bt(e) {
 					'class',
 					'bubble tw-grid tw-grid-cols-5 tw-gap-3 tw-bg-slate-200 tw-p-4 tw-rounded-full tw-place-items-center svelte-1k4k3rq'
 				),
-				c(t, 'class', 'tw-max-w-sm tw-flex tw-flex-col tw-flex-auto tw-h-full tw-p-6'),
+				c(t, 'class', 'tw-flex tw-flex-col tw-flex-auto'),
 				c(s, 'class', 'buuubble icon svelte-1k4k3rq');
 		},
 		m(u, b) {
@@ -962,7 +962,7 @@ function Zt(e) {
 					c(
 						o,
 						'class',
-						'tw-max-w-sm tw-flex tw-flex-col tw-flex-auto tw-h-full tw-p-6 chatHidden svelte-1ybb335'
+						'tw-flex tw-flex-col tw-flex-auto chatHidden svelte-1ybb335'
 					),
 					c(t, 'class', 'tw-fixed msgbox svelte-1ybb335'),
 					c(l, 'class', 'grow svelte-1ybb335');

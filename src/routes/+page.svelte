@@ -47,10 +47,6 @@ section {
 	flex: 1;
 }
 
-#app *{
-	font-family:"Roboto",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-}
-
 #background {
 	position: fixed;
 	right: 0;
