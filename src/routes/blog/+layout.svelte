@@ -1,20 +1,10 @@
 <script lang="ts">
     import { MeterChart } from '@carbon/charts-svelte';
     import { Statuses, ChartTheme } from '@carbon/charts';
+    import Nav from '$lib/components/navigation/nav.svelte';
+    //import YoutubeFeed from '$lib/components/youtube-feed/YoutubeFeed.svelte';
     import '@carbon/charts-svelte/styles.css';
-    export let data;
 </script>
-
-<!-- START: Controls for slideouts -->
-<input type="checkbox" id="aside-menu-checkbox" style="display:none;"/>
-<label id='aside-button' for='aside-menu-checkbox'>
-    <div id='arrow'></div>
-</label>
-<input type="checkbox" id="nav-menu-checkbox" style="display:none;"/>
-<label id='nav-button' for='nav-menu-checkbox'>
-    <div id='burger'></div>
-</label>
-<!-- END: Controls for slideouts -->
 
 <aside>
     <section id="header">
@@ -29,9 +19,10 @@
     </section>
     <section id="languages">aa</section>
     <section id="goals">
+    <!--
     <MeterChart 
             data={[
-                {group: "HTML", value: "90"},
+                {group: "IT Engineer", value: "100"},
             ]}
             options={{
                 meter: {
@@ -47,13 +38,13 @@
                             range: [
                                 60,
                                 80
-                            ], status: Statuses.SUCCESS
+                            ], status: Statuses.WARNING
                             },
                             {
                             range: [
                                 80,
                                 100
-                            ], status: Statuses.DANGER
+                            ], status: Statuses.SUCCESS
                             }
                         ]
                     }
@@ -64,9 +55,48 @@
                 theme: ChartTheme.G100,
                 height: "50px"
             }}/>
+    -->
+    <!--
     <MeterChart 
         data={[
-            {group: "CSS", value: "70"},
+            {group: "Electronics Engineer", value: "80"},
+        ]}
+        options={{
+            meter: {
+                peak: 90,
+                status: {
+                    ranges: [{
+                            range: [
+                                0,
+                                60
+                            ], status: Statuses.DANGER
+                            },
+                            {
+                            range: [
+                                60,
+                                90
+                            ], status: Statuses.WARNING
+                            },
+                            {
+                            range: [
+                                90,
+                                100
+                            ], status: Statuses.SUCCESS
+                            }
+                    ]
+                }
+            },
+            toolbar: {
+                enabled: false
+            },
+            theme: ChartTheme.G100,
+            height: "50px"
+        }}/>
+    -->
+    <h2>Goals</h2>
+    <MeterChart 
+        data={[
+            {group: "Sim & Pathing Thesis", value: "30"},
         ]}
         options={{
             meter: {
@@ -76,19 +106,19 @@
                             range: [
                                 0,
                                 60
-                            ], status: Statuses.WARNING
+                            ], status: Statuses.DANGER
                             },
                             {
                             range: [
                                 60,
                                 80
-                            ], status: Statuses.SUCCESS
+                            ], status: Statuses.WARNING
                             },
                             {
                             range: [
                                 80,
                                 100
-                            ], status: Statuses.DANGER
+                            ], status: Statuses.SUCCESS
                             }
                     ]
                 }
@@ -101,7 +131,7 @@
         }}/>
     <MeterChart 
         data={[
-            {group: "TypeScript", value: "30"},
+            {group: "SimRacing League", value: "10"},
         ]}
         options={{
             meter: {
@@ -111,19 +141,19 @@
                             range: [
                                 0,
                                 60
-                            ], status: Statuses.WARNING
+                            ], status: Statuses.DANGER
                             },
                             {
                             range: [
                                 60,
                                 80
-                            ], status: Statuses.SUCCESS
+                            ], status: Statuses.WARNING
                             },
                             {
                             range: [
                                 80,
                                 100
-                            ], status: Statuses.DANGER
+                            ], status: Statuses.SUCCESS
                             }
                     ]
                 }
@@ -136,7 +166,7 @@
         }}/>
     <MeterChart 
         data={[
-            {group: "World Domination", value: "10"},
+            {group: "World Domination", value: "1"},
         ]}
         options={{
             meter: {
@@ -170,23 +200,13 @@
             height: "50px"
         }}/>
     </section>
-    <section id="skills">aa</section>
+    <section id="feed">
+    </section>
 </aside>
 <main>
     <slot/>
 </main>
-<nav>
-    <!-- TODO: Make this content dynamic-->
-    <ul>
-      <li>Kamil Śmigielski <br><span>IT Engineer</span></li>
-      <li><a href="https://amun.pl">Company Home</a></li>
-      <li><a href="https://amun.pl/blog">Blog Home</a></li>
-      <li><a href="https://instagram.com/" target="_blank"><s>Instagram</s></a></li>
-      <li><a href="https://twitter.com/" target="_blank"><s>Twitter</s></a></li>
-      <li><a href="https://www.youtube.com/@DriftJunkie" target="_blank">YouTube</a></li>
-      <li><a href="https://www.linkedin.com/in/kamil-smigielski" target="_blank">Linkedin</a></li>
-    </ul>
-</nav>
+<Nav />
 
 <style lang="less">
 h1, h2, h3, h4, h5, h6, p {
@@ -205,13 +225,11 @@ aside {
     display: flex;
     flex-direction: column;
     text-align: center;
-    position: absolute;
-    left: 0px;
-    top: 0;
+    min-width: 20rem;
+    max-width: 25rem;
     z-index: 1;
     padding: 3.2rem 2rem;
     margin: 1rem;
-    width: 20rem;
     height: -webkit-fill-available;
     background: var(--secondary-color);
 
@@ -260,7 +278,7 @@ main {
     grid-auto-rows: max-content;
     overflow: auto;
     padding: 6rem 2rem;
-    margin: 0 5rem 0 24rem;
+    margin-right: 2rem;
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
@@ -270,109 +288,10 @@ main {
     margin: auto;
 }
 
-#nav-button {
-    transition: all 0.3s;
-    box-sizing: border-box;
-    cursor: pointer;
-    position: absolute;
-    z-index: 99;
-    top: 2rem;
-    right: 2rem;
-    height: 3rem;
-    width: 3rem;
-    #burger, #burger::after, #burger::before {
-            transition: all .25s;
-            content: "";
-            position: absolute;
-            left: 0;
-            height: 6px;
-            width: 30px;
-            border-radius: 15px;
-            background-color: rgba(255, 255, 255, 0.95);
-    }
-    #burger {
-        top: 1rem;
-        right: 0;
-        &::before {
-            top: -8px;
-        }
-        &::after {
-            top: 8px;
-        }
-    }
-}
-#nav-menu-checkbox:checked {
-    & ~ nav {
-        width: 250px;
-        transition: 250ms ease-in-out;
-        ul {
-            opacity: 1;
-            transform: translateX(0) translateY(-50%);
-            transition: 450ms ease-in-out;
-        }
-    }
-    & ~ #nav-button > #burger {
-        &::before {
-            top: 0;
-            transform: rotate(45deg);
-        }
-        &::after {
-            top: 0;
-            transform: rotate(-45deg);
-        }
-        & {
-            background-color: transparent;
-        }
-    }
-}
-nav {
-    display: block;
-    position: absolute;
-    right: 0px;
-    top: 0;
-    width: 5rem;
-    height: -webkit-fill-available;
-    overflow: hidden;
-    margin: 1rem;
-    transition: 250ms ease-in-out;
-    background: linear-gradient(180deg, var(--tertiary-color) 0%, var(--fourth-color) 100%);
-    border-radius: 0 0 0 1rem;
-    ul {
-        margin: 0;
-        padding: 0;
-        position: relative;
-        top: 50%;
-        width: 250px;
-        opacity: 0;
-        transform: translateX(50px) translateY(-50%);
-        transition: 450ms ease-out;
-        li {
-            list-style: none;
-            color: #fff;
-            text-transform: uppercase;
-            font-weight: bold;
-            padding: 1em;
-            max-height: 3em;
-            cursor: pointer;
-            a {
-                color: #fff;
-                text-transform: uppercase;
-                font-weight: bold;
-                cursor: pointer;
-                text-decoration: none;
-            }
-        }
-    }
-}
-
 @media (pointer: coarse) {
-    aside {
-        position:absolute;
-        visibility: hidden;
-    }
     main {
-        padding: 6rem 1rem;
-        margin: unset;
+        padding: 6rem auto;
+        margin: 0 auto;
     }
 }
 
@@ -380,9 +299,14 @@ nav {
     :global(#image-trim) {
         display: none;
     }
+    aside {
+        position:absolute;
+        visibility: hidden;
+    }
     main {
         padding: unset;
         margin: unset;
+        width: 100%;
     }
     :global(.tag, .post) {
         padding: 1rem !important;

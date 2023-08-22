@@ -1,7 +1,3 @@
-<script>
-	export let data;
-</script>
-
 <article>
 	<slot />
 </article>
