@@ -1,8 +1,8 @@
 export const prerender = true;
+import type { PageLoad } from './$types'
 import GhostContentAPI from '@tryghost/content-api';
 
-/** @type {import('./$types').PageServerLoad} */
-export async function load() {
+export const load = (async () => {
 	const GHOST_URL = 'https://ghost.amun.pl';
 	const GHOST_KEY = 'e701b4bd9cb5352d3dc49c381b';
 	const GHOST_VERSION = 'v5.0';
@@ -32,4 +32,4 @@ export async function load() {
 	} catch (error) {
 		console.error(error);
 	}
-}
+}) satisfies PageLoad;
